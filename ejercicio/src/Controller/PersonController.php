@@ -4,13 +4,34 @@ namespace Src\Controller;
 use Src\TableGateways\PersonGateway;
 
 class PersonController {
-
+    /**
+    * @access private
+    * @var DatabaseConnector
+    */
     private $db;
+    /**
+    * @access private
+    * @var string
+    */
     private $requestMethod;
+    /**
+    * @access private
+    * @var int
+    */
     private $userId;
-
+    /**
+    * @access private
+    * @var PersonGateway
+    */
     private $personGateway;
 
+    
+    /**
+    * Constructor de la clase PersonController.php
+    * @param $db base de datos donde vamos a conectarnos
+    * @param $requestMethod tipo de petición que se va a realizar
+    * @param $userId identificador del usuario	
+    */
     public function __construct($db, $requestMethod, $userId)
     {
         $this->db = $db;
@@ -19,7 +40,14 @@ class PersonController {
 
         $this->personGateway = new PersonGateway($db);
     }
-
+    
+    
+    
+    /**
+    * Funcionalidad que se encarga de procesar las peticiones de los usuarios.
+    * En función de la petición llama a una función diferente.
+    * @example POST llama a createUserFromRequest
+    */
     public function processRequest()
     {
         switch ($this->requestMethod) {
@@ -48,7 +76,15 @@ class PersonController {
             echo $response['body'];
         }
     }
-
+    
+    
+    /**
+    * Funcionalidad que se encarga de obtener todos los usuarios del sistema.
+    * Si todo ha ido correcto, inserta el código 200 en la respuesta.
+    * Posteriormente transforma estos en json para su devolución.
+    * @return Response
+    */
+    
     private function getAllUsers()
     {
         $result = $this->personGateway->findAll();
@@ -56,7 +92,15 @@ class PersonController {
         $response['body'] = json_encode($result);
         return $response;
     }
-
+    
+    /**
+    * Funcionalidad que se encarga de obtener un usuario en base a una id proporcionada.
+    * Si todo ha ido correcto, inserta el código 200 en la respuesta.
+    * Posteriormente transforma estos en json para su devolución.
+    * En caso de que no se encuentre el usuario, se lanza una excepción de no encontrado.
+    * @param $id int
+    * @return Response
+    */
     private function getUser($id)
     {
         $result = $this->personGateway->find($id);
@@ -68,6 +112,14 @@ class PersonController {
         return $response;
     }
 
+
+    /**
+    * Funcionalidad que se encarga de crear un usuario de una petición http.
+    * Previa a la creación, se valida que el usuario es correcto.
+    * Si es correcto, se inserta en la base de datos.
+    * @param $usuario. No incluido como parámero del método, sino que viene en ei input de la petición.
+    * @return Response
+    */
     private function createUserFromRequest()
     {
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
