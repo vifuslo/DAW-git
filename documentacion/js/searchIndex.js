@@ -43,12 +43,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Src\\Controller\\PersonController\u003A\u003AgetUser\u0028\u0029",
             "name": "getUser",
-            "summary": "",
+            "summary": "Funcionalidad\u0020que\u0020se\u0020encarga\u0020de\u0020obtener\u0020un\u0020usuario\u0020en\u0020base\u0020a\u0020una\u0020id\u0020proporcionada.",
             "url": "classes/Src-Controller-PersonController.html#method_getUser"
         },                {
             "fqsen": "\\Src\\Controller\\PersonController\u003A\u003AcreateUserFromRequest\u0028\u0029",
             "name": "createUserFromRequest",
-            "summary": "",
+            "summary": "Funcionalidad\u0020que\u0020se\u0020encarga\u0020de\u0020crear\u0020un\u0020usuario\u0020de\u0020una\u0020petici\u00F3n\u0020http.",
             "url": "classes/Src-Controller-PersonController.html#method_createUserFromRequest"
         },                {
             "fqsen": "\\Src\\Controller\\PersonController\u003A\u003AupdateUserFromRequest\u0028\u0029",
