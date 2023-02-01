@@ -3,13 +3,26 @@ namespace Src\TableGateways;
 
 class PersonGateway {
 
+    /**
+     * @access private
+     * @var DataBaseConnector
+     */
     private $db = null;
 
+    /**
+     * Constructor de la clase PersonGateway.php
+     * @param $db base de datos donde vamos a conectarnos
+     */
     public function __construct($db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Funcionalidad que se encarga de encontrar todos los usuarios de la base de datos.
+     * @param $satement utilizada para hacer la peticion a la base de datos de los datos de un usuario.
+     * @return Result
+     */
     public function findAll()
     {
         $statement = "
@@ -28,6 +41,12 @@ class PersonGateway {
         }
     }
 
+    /**
+     * Funcionalidad que se encarga de encontrar un usuario de la base de datos a partir de una ID proporcionada.
+     * @param $satement utilizada para hacer la peticion a la base de datos de los datos de un usuario.
+     * @param $id int
+     * @return Result
+     */
     public function find($id)
     {
         $statement = "
@@ -48,6 +67,12 @@ class PersonGateway {
         }
     }
 
+    /**
+     * Funcionalidad para insertar nuevos usuarios (filas) en la base de datos.
+     * @param $satement utilizada para hacer la peticion a la base de datos.
+     * @param $input array  utilizada para asignar los valores a cada atributo.
+     * @return número filas añadidas 
+     */
     public function insert(Array $input)
     {
         $statement = "
@@ -71,6 +96,13 @@ class PersonGateway {
         }
     }
 
+    /**
+     * Funcionalidad para actualizar informacion de un usuario (fila) en la base de datos a partir de una ID proporcionada.
+     * @param $satement utilizada para hacer la peticion a la base de datos.
+     * @param $input array  utilizada para asignar los valores a cada atributo.
+     * @param $id int
+     * @return número filas actualizadas
+     */
     public function update($id, Array $input)
     {
         $statement = "
@@ -98,6 +130,12 @@ class PersonGateway {
         }
     }
 
+    /**
+     * Funcionalidad que se encarga de eliminar un usuario de la base de datos a partir de una ID proporcionada.
+     * @param $satement utilizada para hacer la peticion a la base de datos de los datos de un usuario.
+     * @param $id int
+     * @return número filas eliminadas
+     */
     public function delete($id)
     {
         $statement = "

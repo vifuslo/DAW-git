@@ -132,6 +132,14 @@ class PersonController {
         return $response;
     }
 
+    /**ACTIVIDAD 3
+     * 
+     * Funcionalidad que se encarga de actualizar un usuario de una petición HTTP a partir de una ID proporcionada.
+     * Primero busca el usuario con esta ID.
+     * Y si es correcta la validación, procede a actualizarlo.
+     * @param $id int
+     * @return Response
+     */
     private function updateUserFromRequest($id)
     {
         $result = $this->personGateway->find($id);
@@ -148,6 +156,13 @@ class PersonController {
         return $response;
     }
 
+    /**
+     * Funcionalidad que se encarga de eliminar un usuario a partir de una ID proporcionada.
+     * Primero busca el usuario con esta ID.
+     * Si lo encuentra, procede a eliminarlo.
+     * @param $id int
+     * @return Response
+     */
     private function deleteUser($id)
     {
         $result = $this->personGateway->find($id);
@@ -160,6 +175,12 @@ class PersonController {
         return $response;
     }
 
+    /**
+     * Funcionalidad usada para validar usuarios.
+     * Con el input resultante de la petición comprueba el nombre y apellido del usuario.
+     * @param $input
+     * @return boolean 
+     */
     private function validatePerson($input)
     {
         if (! isset($input['firstname'])) {
@@ -171,6 +192,11 @@ class PersonController {
         return true;
     }
 
+    /**
+     * Funcionalidad usada para dar una respuesta cuando la validación resulta fallida.
+     * Tiene lugar cuando la función validatePerson devuelve "false".
+     * @return Response
+     */
     private function unprocessableEntityResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
@@ -180,6 +206,10 @@ class PersonController {
         return $response;
     }
 
+    /**
+     * Funcionalidad usada para dar una respuesta cuando la busqueda de un usuario resulta fallida.
+     * @return Response
+     */
     private function notFoundResponse()
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
